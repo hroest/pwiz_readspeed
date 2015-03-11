@@ -1,0 +1,26 @@
+
+How to compile proteowizard on RHEL:
+
+
+svn checkout svn://svn.code.sf.net/p/proteowizard/code/trunk/pwiz proteowizard-code
+cd proteowizard-code
+
+
+# Add the following two lines to the Jamroot.jam
+# <include>/usr/lib/x86_64-redhat-linux5E/include
+# <library-path>/usr/lib/x86_64-redhat-linux5E/lib64/
+# after 
+# project pwiz
+#   : requirements
+#   : requirements
+#  
+
+# you need to set those in your shell before compiling:
+export LC-ALL='C'
+export LANG='C'
+export LC_ALL='C'
+
+# now actually compile it
+sh quickbuild.sh  --without-mz5 -j24
+
+
