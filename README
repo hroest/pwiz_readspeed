@@ -1,3 +1,13 @@
+Compile ReadSpeed
+------------------
+ 
+ cmake -DPWIZ_MAINDIR=/path/to/pwiz .
+ make
+ 
+Make sure to edit the CMakeLists.txt file and ensure that all variables and path are correct as found in the compilation folder of ProteoWizard (see below).
+
+Compile ProteoWizard
+--------------------
 
 How to compile proteowizard on RHEL:
 
