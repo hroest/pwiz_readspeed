@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 2.6)
 project(PWIZ_external_build)
 
 ###########################################################################
-### System specific configuration 
+### System specific configuration
 ###########################################################################
 
 # add executables here... (each should correspond to a .cpp file)
-SET(my_executables 
+SET(my_executables
   tic_pwiz
   tic_pwiz_parallel
 )
@@ -45,7 +45,7 @@ set(pwiz_link_libraries
 )
 
 # all boost libs
-SET(boost_libs 
+SET(boost_libs
   # date_time # may be omitted
   # prg_exec_monitor # may be omitted
   # serialization # may be omitted
@@ -53,7 +53,7 @@ SET(boost_libs
   filesystem
   iostreams
   thread
-  regex
+  regex # is missing in newest pwiz package ?
   system
   chrono
 )
@@ -70,7 +70,7 @@ set(ext_link_libraries
 
 include_directories(${PWIZ_MAINDIR})
 
-# add the locations of the libraries of pwiz 
+# add the locations of the libraries of pwiz
 link_directories(${PWIZ_BASEDIR}/utility/misc/${EXTRA_QUAL}/${PWIZ_MAKEDIR})
 link_directories(${PWIZ_BASEDIR}/utility/minimxml/${EXTRA_QUAL}/${PWIZ_MAKEDIR})
 link_directories(${PWIZ_BASEDIR}/data/msdata/${EXTRA_QUAL}/${PWIZ_MAKEDIR})
@@ -84,7 +84,7 @@ link_directories(${PWIZ_MAINDIR}/${PWIZ_BUILDNAME}/standalone/zlib/${PWIZ_MAKEDI
 # add the location of boost libraries and add the lib itself to the linker
 foreach(i ${boost_libs})
   link_directories(${PWIZ_MAINDIR}/${PWIZ_BUILDNAME}/ext/boost/${i}-${BOOST_VERSION}/${EXTRA_QUAL}/boost/${PWIZ_MAKEDIR})
-  LIST(APPEND ext_link_libraries boost_${i}-gcc44-mt-s)
+  LIST(APPEND ext_link_libraries boost_${i}-gcc${GCC_VERSION}-mt-s)
 endforeach(i)
 
 # should we link against OpenMP?
